@@ -79,9 +79,29 @@ YOUR_WEB_URL/api/insert/ => insert a data into the database [id = new(for new en
 
 
 ## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
-
+### Create Account
+Create an account in Heroku
+### Install CLI
+Install Heroku CLI and login to Heroku
+### Create Procfile
+create a procfile in the folder 
+add web: gunicorn myproject.wsgi
+### Install django-heroku
+pipenv install django-heroku
+### Add important lines to settings.py file
+Add the following import statement to the top of settings.py:
+import django_heroku
+Then add the following to the bottom of settings.py:
+#Activate Django-Heroku.
+django_heroku.settings(locals())
+### install gunicorn 
+pipenv install gunicorn
+### Heroku Create an app
+heroku create "app-name"
+### git push in heroku
+git push heroku master
+Open the website
+if the website is not working then use heroku run bash
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [SQLITE](https://www.sqlite.org/) - Database
