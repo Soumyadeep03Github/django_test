@@ -44,31 +44,31 @@ Python > 3.5 (recommend) must be installed with pip package installer
 
 ### Installing
 
-##Install using pipenv:
+## Install using pipenv:
 Open the cloned folder in terminal or command prompt for windows
-#execute the folloing command to install all the dependencies of the project:
+# execute the folloing command to install all the dependencies of the project:
 pipenv install --skip-lock
-#Enable the virtual environment using the command:
+# Enable the virtual environment using the command:
 pipenv shell
-#Migrate the model changes:
+# Migrate the model changes:
 python manage.py migrate
-#Create a superuser if you want to check all the models in admin panel by executing the below command and providing login information(Optional)
+# Create a superuser if you want to check all the models in admin panel by executing the below command and providing login information(Optional)
 python manage.py createsuperuser
-#Run the Django app
+# Run the Django app
 python manage.py runserver
 
-##Install using pip(without virtual environment):
+## Install using pip(without virtual environment):
 Open the cloned folder in terminal or command prompt for windows
-#execute the folloing command to install all the dependencies of the project:
+# execute the folloing command to install all the dependencies of the project:
 pip install -r requirement.txt
-#Migrate the model changes:
+# Migrate the model changes:
 python manage.py migrate
-#Create a superuser if you want to check all the models in admin panel by executing the below command and providing login information(Optional)
+# Create a superuser if you want to check all the models in admin panel by executing the below command and providing login information(Optional)
 python manage.py createsuperuser
-#Run the Django app
+# Run the Django app
 python manage.py runserver
 
-##Open the app in browser
+## Open the app in browser
 Open the below link in any browser:
 127.0.0.1:8000
 
