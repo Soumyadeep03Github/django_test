@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import django_heroku
 from pathlib import Path
 import os
 
@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '6b@mt6(_qe&6)!xwjjl0dtsi%&azx^*7yy_v(cd1x#6g$5(^y2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1' ,'*.heroku.com']
 
 
 # Application definition
@@ -121,3 +121,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 APPEND_SLASH=False
+
+django_heroku.settings(locals())
