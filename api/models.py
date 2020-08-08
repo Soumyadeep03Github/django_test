@@ -10,9 +10,12 @@ class user(models.Model):
         return self.real_name
 
 class activity_periods(models.Model):
-    user_id = models.ForeignKey(user, on_delete = models.CASCADE) 
+    user_id = models.ForeignKey(user, on_delete = models.CASCADE , related_name='users') 
     start_time = models.CharField( blank=False, max_length=255)
     end_time = models.CharField( blank=False, max_length=255)
    
     def __str__(self):
         return self.user_id.real_name +"_"+ str(self.id)
+    
+    class Meta:
+        verbose_name_plural = "activity_periods"

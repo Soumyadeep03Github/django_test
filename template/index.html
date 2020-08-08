@@ -1,0 +1,117 @@
+{% block content %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<div class="row">
+    <div class="container">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <div class="header">
+                <center><strong> Data Form for Data insertion in the database </strong></center>
+            </div>
+            <form>
+                <div class="from-group row">
+                    <div class="form-group col-md-6">
+                        <label> SELECT NAME </label>
+                        <select id="name_id" onchange=" start_end_call(this)" style="width:70%; margin-top:20px;">
+                            <option disabled selected> --SELECT A NAME -- </option>
+                            <option value="new"> ADD A NAME </option>
+                            {% for items in data %}
+                                <option value="{{items.id}}">{{items.real_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6" id="add_name">
+                        <label> NAME </label>
+                        <input type="text" id="name" name="user_name" placeholder="Enter a Name" value="" style="width:87%; margin-top:20px;"/>
+                    </div>
+                </div>
+                <div class="from-group row" id="id_new">
+                    <div class="form-group col-md-6">
+                        <label> Timezone</label>
+                        <input type="text" id="timezone" name="timezone" placeholder="Asia/Kolkata" value="" style="width:80%; margin-top:20px;"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label> ID</label>
+                        <input type="text" id="ID" name="ID" placeholder="Provide ID" value="" style="width:94%; margin-top:20px;"/>
+                    </div>
+                </div>
+                <div class="from-group row" id="strat_end">
+                    <div class="form-group col-md-6">
+                        <label> Start Time</label>
+                        <input type="text" id="starttime" name="starttime" placeholder="Month Day Year  hh:mm AM/PM" value="" style="width:79%; margin-top:20px;"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label> End Time </label>
+                        <input type="text" id="endtime" name="endtime" placeholder="Month Day Year  hh:mm AM/PM" value="" style="width:80%; margin-top:20px;"/>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-2">
+                    <button id="button_submit">SUBMIT</button>
+                </div>
+                <div class="col-md-5">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+document.getElementById('add_name').style.display = "none";
+document.getElementById('id_new').style.display = "none";
+document.getElementById('strat_end').style.display = "block";
+function start_end_call(no_values)
+{
+    if(no_values.value == "new")
+    {
+        document.getElementById('add_name').style.display = "block";
+        document.getElementById('id_new').style.display = "block";
+        document.getElementById('strat_end').style.display = "none";
+    }
+    else
+    {
+        document.getElementById('add_name').style.display = "none";
+        document.getElementById('id_new').style.display = "none";
+        document.getElementById('strat_end').style.display = "block";
+    }
+}
+
+$('#button_submit').click( function(e){
+    e.preventDefault();
+    name_id = document.getElementById('name_id').value;
+    if(name_id == "new")
+    {
+        name_selected = document.getElementById('name_id').value;
+        name = document.getElementById('name').value;
+        id = document.getElementById('ID').value;
+        time_zone = document.getElementById('timezone').value;
+        $.post("api/insert/",{"name_selected":name_selected,"name":name,"id":id,"time_zone":time_zone},
+        function(callback){
+        //console.log(callback)
+        })
+        //window.location.reload(true);
+    }
+    else
+    {
+        id = document.getElementById('name_id').value;
+        name_selected = document.getElementById('name_id').value;
+        start_time = document.getElementById('starttime').value;
+        end_time = document.getElementById('endtime').value;
+        //console.log(id);
+        $.post("api/insert/",{"id":id,"name_selected":name_selected,"start_time":start_time,"end_time":end_time},
+        function(callback){
+        //console.log(callback)
+        })
+        //window.location.reload(true);
+    }
+})
+</script>
+
+{% endblock %}
