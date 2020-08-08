@@ -89,27 +89,70 @@ $('#button_submit').click( function(e){
     if(name_id == "new")
     {
         name_selected = document.getElementById('name_id').value;
-        name = document.getElementById('name').value;
-        id = document.getElementById('ID').value;
-        time_zone = document.getElementById('timezone').value;
-        $.post("api/insert/",{"name_selected":name_selected,"name":name,"id":id,"time_zone":time_zone},
-        function(callback){
-        //console.log(callback)
-        })
-        //window.location.reload(true);
+        if(name_selected != ''){
+            name = document.getElementById('name').value;
+            if(name != ''){
+                id = document.getElementById('ID').value;
+                if(id != ''){
+                    if(id != "new"){
+                        time_zone = document.getElementById('timezone').value;
+                        if(time_zone != '')
+                        {
+                            $.post("api/insert/",{"name_selected":name_selected,"name":name,"id":id,"time_zone":time_zone},
+                            function(callback){
+                            })
+                            window.location.reload(true);
+                        }
+                        else{
+                            alert("Enter Time Zone");
+                        }
+                    }
+                    else{
+                        alert("Plaese Change the provided ID")
+                    }
+                }
+                else{
+                    alert("Enter ID");
+                }
+            }
+            else{
+                alert("Enter Name");
+            }
+        }
+        else{
+            alert("Selection Error select again");
+        }
     }
     else
     {
         id = document.getElementById('name_id').value;
-        name_selected = document.getElementById('name_id').value;
-        start_time = document.getElementById('starttime').value;
-        end_time = document.getElementById('endtime').value;
-        //console.log(id);
-        $.post("api/insert/",{"id":id,"name_selected":name_selected,"start_time":start_time,"end_time":end_time},
-        function(callback){
-        //console.log(callback)
-        })
-        //window.location.reload(true);
+        if(id != ''){
+            name_selected = document.getElementById('name_id').value;
+            if(name_selected != ''){
+                start_time = document.getElementById('starttime').value;
+                if(start_time != ''){
+                    end_time = document.getElementById('endtime').value;
+                    if(end_time != ''){
+                        $.post("api/insert/",{"id":id,"name_selected":name_selected,"start_time":start_time,"end_time":end_time},
+                        function(callback){
+                        })
+                        window.location.reload(true);
+                    }
+                    else{
+                        alert("Enter End Time");
+                    }
+                }
+                else{
+                    alert("Enter Start Time");
+                }
+            }
+            else{
+                alert("Selection Error Select again");
+            }
+        }
+        else{
+            alert("Selection Error Select again");
+        }
     }
 })
 </script>
